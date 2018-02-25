@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CurrencyService } from './services/currency-service';
 import { Observable} from 'rxjs/Rx';
-//import currencies from './currencies.json';
+import * as currencies from './helpers/currencies.json';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class AppComponent  {
     }
 
   inputValue:number;  
-  currencies:Array<string>;
+  currencies:Array<string> = currencies.currencies;
 
   base:string ;
   symbols:string ;
@@ -24,17 +24,8 @@ export class AppComponent  {
   
   exchangerate:number;
   firstValue:number;
-  finalValue:number;
- 
+  finalValue:number; 
 
-  ngAfterViewInit() {
-    fetch('./assets/helpers/currencies.json').then(response => response.json().then(res => {        
-        this.currencies=res.currencies;      
-      })); 
-
-    
-  } 
-    
   getCurrentCurrency = (event) => {
     this.base = event.target.value;
   }
